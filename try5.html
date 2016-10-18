@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<head>
+	<meta http-equiv="content-type" content="text/html" />
+	<meta name="author" content="lolkittens" />
+
+	<title>Untitled 2</title>
+</head>
+
+<body>
+<div id="lol1"></div>
+
+<script>
+
+var string1 = "a ja nie mam=dfsgsdg; to równa sie cos= ma³y kokos;";
+var lengthString = string1.length;
+
+alert(string1);
+var text = "";
+for (var i=0; i<lengthString; i++){
+    text += string1[i] ;
+    //alert(i);
+    }
+
+document.querySelector('#lol1').innerHTML = text;
+</script>
+</body>
+</html>
