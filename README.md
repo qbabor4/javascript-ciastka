@@ -1,3 +1,5 @@
 # javascript-ciastka
-wszystko związane z ciastkami\n
-dodane sprawdzanie czy ciastko istnieje
+wszystko związane z ciastkami
+
+
+Dodane sprawdzanie czy ciastko istnieje
