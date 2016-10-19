@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<head>
+	<meta http-equiv="content-type" content="text/html" />
+	<meta name="author" content="lolkittens" />
+
+	<title>Untitled 1</title>
+</head>
+
+<body>
+
+<input type="button" name="button2" value="Poka ciastka" onclick="showCookies()" />
+
+<div id="lol1"><p>Wpisz dane ciastka, które ma zostaæ utworzone: <br /></p></div>
+<input type="text" name="cookieDeleteName" id="textBox1" placeholder="Nazwa Ciastka" />
+<input type="text" name="cookieCreateValue" id="textBox2" placeholder="Wartoœæ ciastka" />
+<input type="text" name="cookieExpiryDate" id="textBox3" placeholder="Dni do wygaœniêcia" />
+<input type="button" name="button3" value="zrób ciastko" onclick="inputSetCookie()" />  <!-- zmienic onclick -->
+<br />
+
+<div id="lol2"><p>Wpisz nazwê ciastka, które ma byæ zjedzone:<br /></p></div>
+<input type="text" name="cookieDeleteValue" id="textBox4" placeholder="Nazwa Ciastka" />
+<input type="button" name="button1" value="zjedz ciastko" onclick="destroyCookie()" /> <br />
+
+<div id="lol3"><p>SprawdŸ czy ciasto o podanej nazwie istnieje:<br /></p></div>
+<input type="text" name="checkForCookie" id="textBox5" placeholder="Nazwa Ciastka" />
+<input type="button" name="button4" value="sprawdz ciastko" onclick="inputGetCookie()" />
+
+
+<script type="text/javascript">
+
+document.cookie = "startuDate2 = 445435235; expires=Thu, 18 Dec 2017 12:00:00 UTC+02:00; path=/";
+document.cookie = "lol4 = 5235; expires=Thu, 18 Dec 2017 12:00:00 UTC+02:00; path=/";
+document.cookie = "alele3 = ma³piszon; expires=Thu, 18 Dec 2017 12:00:00 UTC+02:00; path=/";
+
+function getCookies(){
+    var cookies = document.cookie;
+    return cookies;
+    }
+    
+function showCookies(){
+    alert(getCookies());
+    }
+
+function setCookie(cname, cvalue, exdays){
+    //zamienic exdays na zminne dzien, godzina, sekundy, milisekundy od razu przypisane do 0 
+    var date1 = new Date();
+    var timeZoneOffset = (date1.getTimezoneOffset()); //2 godziny od UTC
+    var expireMilisec = (exdays)*24*60*60*1000 - timeZoneOffset*60*1000 ; //zamiana dni na milisekundy
+    date1.setTime(date1.getTime() + expireMilisec);
+    var expires = "expires=" + date1.toUTCString()+ "+02:00; path=/";
+    
+    document.cookie = cname + "=" +  cvalue + ";" + expires;
+    
+    //alert(expires);       
+    }
+  
+function destroyCookie(){
+    var textBox = document.querySelector('#textBox4').value;
+    var message = "zjadam ciastko: " + textBox +"\nNOMONOMONOMNOM!";
+    alert(message);
+    document.cookie = textBox + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC+02:00; path=/"; 
+    
+    // jak nie ma takiego ciastka to nie zjada i coœ mówi
+    // jak puste
+    
+    }
+    
+function getCookie(cname){
+    // jak input == " " TODO
+    var name = cname + "=";
+    var ca = document.cookie.split(';'); // lista z cname=cvalue
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        //alert( c );
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);    
+            }     
+        // to samo c ale z " " na koncu (?) TODO
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        //alert(c);
+        }
+    return "";        
+    }
+    
+function inputGetCookie(){
+        var cname = document.querySelector('#textBox5').value;
+        var cvalue = getCookie(cname);
+        if (cvalue){
+            alert("Istnieje ciastko\nwartosc:  " + cvalue);
+            }
+        else {
+            alert("nie ma takiego ciastka");
+            }
+    }
+
+function inputSetCookie(){
+    var NameBox = document.querySelector('#textBox1').value;
+    var ValueBox = document.querySelector('#textBox2').value;
+    var ExpiryBox = document.querySelector('#textBox3').value;
+    
+    setCookie(NameBox, ValueBox, ExpiryBox);
+    alert('Upieczone ciastko '+ NameBox);  
+    }
+
+
+var timeNow = setCookie("kot", "ala" ,3);
+
+/*var get_cookie = getCookie("kot");
+alert (get_cookie);
+if (get_cookie){
+    alert("Jest");
+    }
+    */
+// jak nie ma takiego ciastka to nie zjada i coœ mówi
+// tworzenie ciastek
+
+
+</script>
+
+</body>
+</html>
